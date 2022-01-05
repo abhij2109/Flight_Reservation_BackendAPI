@@ -12,7 +12,7 @@ public class Reservation{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private Boolean checkIn;
+	private Boolean checkedIn;
 	private int numberOfBags;
 	@OneToOne
 	private Flight flight;
@@ -27,12 +27,12 @@ public class Reservation{
 		this.id = id;
 	}
 
-	public Boolean getCheckIn() {
-		return checkIn;
+	public Boolean getCheckedIn() {
+		return checkedIn;
 	}
 
-	public void setCheckIn(Boolean checkIn) {
-		this.checkIn = checkIn;
+	public void setCheckedIn(Boolean checkIn) {
+		this.checkedIn = checkIn;
 	}
 
 	public int getNumberOfBags() {

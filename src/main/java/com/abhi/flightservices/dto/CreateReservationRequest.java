@@ -1,7 +1,7 @@
 package com.abhi.flightservices.dto;
 
 public class CreateReservationRequest {
-	private int flightID;
+	private int flightId;
 	private String passengerFirstName;
 	private String passengerLastName;
 	private String passengerMiddleName;
@@ -11,12 +11,12 @@ public class CreateReservationRequest {
 	private String expirationDate;
 	private String securityCode;
 
-	public int getFlightID() {
-		return flightID;
+	public int getFlightId() {
+		return flightId;
 	}
 
-	public void setFlightID(int flightID) {
-		this.flightID = flightID;
+	public void setFlightId(int flightId) {
+		this.flightId = flightId;
 	}
 
 	public String getPassengerFirstName() {

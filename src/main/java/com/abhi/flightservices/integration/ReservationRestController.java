@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import com.abhi.flightservices.repositories.PassengerRepository;
 import com.abhi.flightservices.repositories.ReservationRepository;
 
 @RestController
+@CrossOrigin
 public class ReservationRestController {
 
 	@Autowired
@@ -50,7 +52,7 @@ public class ReservationRestController {
 	@Transactional
 	public Reservation saveReservation(@RequestBody CreateReservationRequest request) {
 
-		Flight flight = flightRepository.findById(request.getFlightID()).get();
+		Flight flight = flightRepository.findById(request.getFlightId()).get();
 
 		Passenger passenger = new Passenger();
 		passenger.setFirstName(request.getPassengerFirstName());
@@ -64,7 +66,7 @@ public class ReservationRestController {
 		Reservation reservation = new Reservation();
 		reservation.setFlight(flight);
 		reservation.setPassenger(savedPassenger);
-		reservation.setCheckIn(false);
+		reservation.setCheckedIn(false);
 		return reservationRepository.save(reservation);
 	}
 
@@ -76,8 +78,8 @@ public class ReservationRestController {
 	@RequestMapping(value = "/reservations", method = RequestMethod.PUT)
 	public Reservation updateReservation(@RequestBody UpdateReservationRequest request) {
 		Reservation reservation = reservationRepository.findById(request.getId()).get();
-		reservation.setId(request.getId());
-		reservation.setCheckIn(request.isCheckedIn());
+		reservation.setNumberOfBags(request.getNumberOfBags());
+		reservation.setCheckedIn(request.isCheckedIn());
 
 		return reservationRepository.save(reservation);
 	}
