@@ -36,6 +36,8 @@ public class ReservationRestController {
 	@Autowired
 	ReservationRepository reservationRepository;
 
+	//To see flights according to the given parameters.
+	
 	@RequestMapping(value = "/flights", method = RequestMethod.GET)
 	public List<Flight> findFlights(@RequestParam("from") String from,
 									@RequestParam("to") String to,
@@ -43,11 +45,13 @@ public class ReservationRestController {
 		return flightRepository.findFlights(from, to, departureDate);
 	}
 
+	//To see the particular flight from its ID.
 	@RequestMapping(value = "/flights/{id}")
 	public Flight findFlightById(@PathVariable("id") int id) {
 		return flightRepository.findById(id).get();
 	}
 
+	//To book a reservation of a particular passenger.
 	@RequestMapping(value = "/reservations", method = RequestMethod.POST)
 	@Transactional
 	public Reservation saveReservation(@RequestBody CreateReservationRequest request) {
@@ -70,11 +74,13 @@ public class ReservationRestController {
 		return reservationRepository.save(reservation);
 	}
 
+	//To see a particular reservation from its ID.
 	@RequestMapping(value = "/reservations/{id}")
 	public Reservation findReservation(@PathVariable("id") int id) {
 		return reservationRepository.findById(id).get();
 	}
 
+	//To update a booked reservation by its ID.
 	@RequestMapping(value = "/reservations", method = RequestMethod.PUT)
 	public Reservation updateReservation(@RequestBody UpdateReservationRequest request) {
 		Reservation reservation = reservationRepository.findById(request.getId()).get();
