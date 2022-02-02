@@ -41,7 +41,8 @@ public class ReservationRestController {
 	@RequestMapping(value = "/flights", method = RequestMethod.GET)
 	public List<Flight> findFlights(@RequestParam("from") String from,
 									@RequestParam("to") String to,
-									@RequestParam("departureDate") @DateTimeFormat(pattern="MM-dd-yyyy") Date departureDate) {
+									@RequestParam("departureDate") @DateTimeFormat(pattern="MM-dd-yyyy") Date departureDate)
+	{
 		return flightRepository.findFlights(from, to, departureDate);
 	}
 
@@ -51,7 +52,7 @@ public class ReservationRestController {
 	public Flight findFlightById(@PathVariable("id") int id) {
 		return flightRepository.findById(id).get();
 	}
-
+ 
 	//To book a reservation of a particular passenger.
 	
 	@RequestMapping(value = "/reservations", method = RequestMethod.POST)
@@ -67,6 +68,7 @@ public class ReservationRestController {
 		passenger.setEmail(request.getPassengerEmail());
 		passenger.setPhone(request.getPassengerPhone());
 
+		
 		Passenger savedPassenger = passengerRepository.save(passenger);
 
 		Reservation reservation = new Reservation();
