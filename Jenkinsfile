@@ -6,7 +6,7 @@ pipeline {
     stages{
         stage('Code Setup'){
             steps{
-                git 'https://github.com/abhij2109/SimpleDeployableAPP'
+                git 'https://github.com/abhij2109/Flight_Reservation_BackendAPI'
             }
         }
         stage('Maven Build Integration'){
